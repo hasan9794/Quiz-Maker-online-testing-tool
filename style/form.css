@@ -1,0 +1,70 @@
+body{
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+}
+
+#label-email, #label-username, #label-password{
+    margin: 0;
+    padding: 0;
+    color: red;
+    font-size: 11px;
+    transition: 0.3s;
+    /* display: none; */
+    visibility: hidden;
+}
+
+img {
+    margin-bottom: 10px;
+}
+
+input, button {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+
+.main-dv, .loggedin-div{
+    width: 20%;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+}
+
+.main-dv input{
+    display: block;
+    padding: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background: #fff;
+    width: 100%;
+    outline: none;
+}
+
+
+.main-dv input:focus{
+    border: 1px solid #777;
+}
+
+.main-dv button, .loggedin-div button {
+    background: #5d8ffc;
+    color: #ffffff;
+    width: 112%;
+    border: 1px solid #5d8ffc;
+    border-radius: 5px;
+    padding: 15px;
+    transition: 0.3s;
+    margin-top: 40px;
+}
+
+.main-dv button:hover, .loggedin-div button:hover {
+    background: #ffffff;
+    color: #5d8ffc;
+    border: 1px solid #5d8ffc;
+    cursor: pointer;
+}
+
+label{
+    margin-top: 40px;
+}

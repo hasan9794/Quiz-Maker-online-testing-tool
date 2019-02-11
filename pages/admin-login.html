@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../style/form.css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    
+
+</head>
+
+<body>
+
+    <div class="main-dv" id="login-div">
+            <!-- <img src="..\images\salespro-2.png" alt=""> -->
+        <h1>Admin Login</h1>
+        <label id="label-username" for="">Please enter a username</label>
+        <input id="username" type="text" name="username" placeholder="Username...">
+        
+        <label id="label-password" for="">Please enter a password</label>
+        <input id="password" type="password" name="password" placeholder="Password...">
+
+        <button id="log-in" onclick="check()">Log In</button>
+        <label >Don't have an account? <a href="./signup.html">Sign up</a></label>
+    </div>
+
+
+    <!-- <div class="logged">
+        <h3>Welcome ABC!</h3>
+        <p>Welcome to my first web login page </p>
+        <button>Log out</button>
+    </div> -->
+    
+<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDyFJIAh8KahyrbsolrcEe6fYulmu-KWDk",
+    authDomain: "newproject-9731e.firebaseapp.com",
+    databaseURL: "https://newproject-9731e.firebaseio.com",
+    projectId: "newproject-9731e",
+    storageBucket: "newproject-9731e.appspot.com",
+    messagingSenderId: "810772182727"
+  };
+  firebase.initializeApp(config);
+</script>
+    <script src="../script/admin-login.js"></script>
+    
+</body>
+
+</html>
