@@ -17,14 +17,20 @@
     <div class="main-dv" id="login-div">
         <!-- <img src="..\images\salespro-2.png" alt=""> -->
         <h1>Student Signup</h1>
-        <label id="label-username" for="">Please enter a username</label>
-        <input id="username" type="text" name="username" placeholder="Username...">
+        <label id="labelName" for="">Please enter your name</label>
+        <input id="name" type="text" name="name" placeholder="Full Name...">
 
-        <label id="label-password" for="">Please enter a password</label>
+        <label id="labelEmail" for="">Please enter a username</label>
+        <input id="email" type="email" name="email" placeholder="Email...">
+
+        <label id="labelPassword" for="">Please enter a password</label>
         <input id="password" type="password" name="password" placeholder="Password...">
+        
+        <label id="label-id" for="">Please enter Student I.D</label>
+        <input id="studentid" type="text" name="id" placeholder="Student I.D ...">
 
-        <button id="log-in" onclick="check()">Log In</button>
-        <label>Don't have an account? <a href="./signup.html">Sign up</a></label>
+        <button id="signup">Sign Up</button>
+        <label>Already have an Account? <a href="./student-login.html">Log In</a></label>
     </div>
 
 
@@ -47,6 +53,7 @@
         };
         firebase.initializeApp(config);
     </script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script src="../script/signup.js"></script>
 
 </body>
