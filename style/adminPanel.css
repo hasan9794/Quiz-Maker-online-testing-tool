@@ -20,6 +20,15 @@ ul {
     font-size: 18px;
 }
 
+.addQuestion{
+ padding-top: 10px;
+ display: flex;
+ justify-content: space-between;
+ /* align-items: center; */
+ font-size: 24px;
+ /* border: 2px dotted red;        */
+}
+
 .bg-image {
     background: url(../images/background-login.jpg) no-repeat 0 0 / cover;
     position: relative;
@@ -606,8 +615,6 @@ header {
 
 
 
-
-
     @media only screen and (max-device-width: 767px) {
         .login-logo img {
             margin: 0 auto;
@@ -763,6 +770,8 @@ header {
             font-size: 15px;
         }
     }
+
+
 
     @media only screen and (min-device-width:998px) and (max-device-width: 1350px) {
         #navigation .logo img {

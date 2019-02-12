@@ -57,7 +57,7 @@
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
-                                    <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal"
+                                    <li onClick="createQuiz()" class="hidden-xs"><a href="#" class="add-project" data-toggle="modal"
                                             data-target="#add_project">Create a quiz</a></li>
                                     <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
                                     <li>
@@ -89,60 +89,9 @@
                         </div>
                     </header>
                 </div>
-                <div class="user-dashboard">
+                <div id="user" class="user-dashboard">
                     <h1>Hello, JS</h1>
-                    <div class="row">
-                        <div id="col" class="col-md-10 col-sm-10 col-xs-12 gutter">
-                            <h1>Create Quiz</h1>
-                            <div class="form-group">
-                                <label for="quiTitle">Quiz Title</label>
-                                <input type="text" class="form-control" id="title">
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Quiz Name</label>
-                                <input type="text" class="form-control" id="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="productKey">Product Key</label>
-                                <input type="text" class="form-control" id="productKey">
-                            </div>
-                            <div class="form-group">
-                                <label for="quizDuration">Quiz Duration</label>
-                                <select class="form-control" id="duration">
-                                    <option value="10">10 Minutes</option>
-                                    <option value="20">20 Minutes</option>
-                                    <option value="30">30 Minutes</option>
-                                    <option value="45">45 Minutes</option>
-                                </select>
-                            </div>
-                            <button onClick="addQuestions()" type="submit" class="btn btn-default">Create & Add
-                                Questions</button>
-
-                            <h3>Question #1</h3>
-                            <div class="form-group">
-                                <label for="question">Question</label>
-                                <input type="text" class="form-control" id="question">
-                            </div>
-                            <div class="form-group">
-                                <label for="Answer1">Enter 1st Option</label>
-                                <input type="text" class="form-control" id="firstOption" placeholder="Option A">
-                            </div>
-                            <div class="form-group">
-                                <label for="Answer1">Enter 2nd Option</label>
-                                <input type="text" class="form-control" id="firstOption" placeholder="Option B">
-                            </div>
-                            <div class="form-group">
-                                <label for="Answer1">Enter 3rd Option</label>
-                                <input type="text" class="form-control" id="firstOption" placeholder="Option C">
-                            </div>
-                            <div class="form-group">
-                                <label for="Answer1">Enter 4th Option</label>
-                                <input type="text" class="form-control" id="firstOption" placeholder="Option D">
-                            </div>
-
-
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
