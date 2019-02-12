@@ -64,7 +64,9 @@ function questions() {
 
     firebase.database().ref('quizes/')
         .push(quizDetails)
-        .then(() =>{
+        .then((success) =>{
+            console.log(success.key);
+            localStorage.setItem("quizKey", JSON.stringify(success.key));
             previousData.innerHTML = 
             `   
                     <div class="row">
@@ -91,6 +93,15 @@ function questions() {
                                     <label for="Answer1">Enter 4th Option</label>
                                     <input type="text" class="form-control" id="fourthOption_1" placeholder="Option D">
                                 </div>
+                                <div class="form-group">
+                                <label for="Answer">Select Answer</label>
+                                <select class="form-control" id="answer_1">
+                                    <option value="1">First Option</option>
+                                    <option value="2">Second Option</option>
+                                    <option value="3">Third Option</option>
+                                    <option value="4">Fourth Option</option>
+                                </select>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -98,7 +109,7 @@ function questions() {
                             <div class="col-md-10 col-sm-10 col-xs-12 gutter">
                                 <div class="addQuestion">
                                     <button onClick="addQuestion()" id="newQuestion" class="btn btn-primary">Add Question</button>
-                                    <button class="btn btn-success">Submit</button>
+                                    <button onClick="submitData()" class="btn btn-success">Submit</button>
                                 </div>
                             </div>    
                     </div>
@@ -135,6 +146,15 @@ function addQuestion() {
                                 <label for="Answer1">Enter 4th Option</label>
                                 <input type="text" class="form-control" id="fourthOption_${id}" placeholder="Option D">
                             </div>
+                            <div class="form-group">
+                                <label for="Answer">Select Answer</label>
+                                <select class="form-control" id="answer_${id}">
+                                    <option value="1">First Option</option>
+                                    <option value="2">Second Option</option>
+                                    <option value="3">Third Option</option>
+                                    <option value="4">Fourth Option</option>
+                                </select>
+                            </div>
                         </div>
                     
             `
@@ -142,5 +162,37 @@ function addQuestion() {
 }
 
 function submitData() {
-    
+    let formsLength = document.getElementsByClassName('form').length;
+    let get = localStorage.getItem("quizKey");
+    let currentQuizNode = JSON.parse(get);
+    for(i=1; i<=formsLength; i++){
+        let question = document.getElementById("question_"+i).value;
+        let firstOption = document.getElementById("firstOption_"+i).value;
+        let secondOption = document.getElementById("secondOption_"+i).value;
+        let thirdOption = document.getElementById("thirdOption_"+i).value;
+        let fourthOption = document.getElementById("fourthOption_"+i).value;
+        let answer = document.getElementById('answer_'+i).value;
+
+        let questionObj = {
+            question,
+            firstOption,
+            secondOption,
+            thirdOption,
+            fourthOption,
+            answer
+        }
+
+        firebase.database().ref('quizes/currentQuizNode/questions/')
+        .push(questionObj)
+        .then(() =>{
+            alert("Quiz added succesfully")
+            location.reload();
+        })
+    }
+
+
+
+
+
+
 }
