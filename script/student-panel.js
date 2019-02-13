@@ -32,7 +32,6 @@ function getQuizes() {
                   </div>
               </div>
             </div>
-  
               `
               console.log()
               
