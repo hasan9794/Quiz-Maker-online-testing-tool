@@ -182,17 +182,13 @@ function submitData() {
             answer
         }
 
-        firebase.database().ref('quizes/currentQuizNode/questions/')
+        firebase.database().ref(`quizes/${currentQuizNode}/questions/`)
         .push(questionObj)
-        .then(() =>{
-            alert("Quiz added succesfully")
-            location.reload();
-        })
+    
     }
-
-
-
-
+    
+    alert("Quiz added succesfully")
+    location.reload();
 
 
 }
