@@ -190,5 +190,4 @@ function submitData() {
     alert("Quiz added succesfully")
     location.reload();
 
-
 }
