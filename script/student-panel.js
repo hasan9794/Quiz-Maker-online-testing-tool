@@ -16,8 +16,8 @@ function getQuizes() {
     let quizArea = document.querySelector("#row");
     firebase.database().ref('quizes/')
       .once('value', (snapshot) =>{
-          var quizObj = snapshot.val();
-          var quizKeys = Object.keys(quizObj);
+          let quizObj = snapshot.val(); 
+          let quizKeys = Object.keys(quizObj);
           quizKeys.map(key =>{
               quizArea.innerHTML =
               `
@@ -28,13 +28,17 @@ function getQuizes() {
                       <h6 class="card-subtitle mb-2 text-muted">${quizObj[key].details.quizName}</h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                           card's content.</p>
-                      <a href="#" class="card-link">Start Quiz</a>
+                      <a onClick="startQuiz('${key}')" href="javascript:void(0)" class="card-link">Start Quiz</a>
                   </div>
               </div>
             </div>
-              `
-              console.log()
-              
+            `
           })
       })
+}
+
+function startQuiz(e) {
+    localStorage.setItem("clikedQuizKey", JSON.stringify(e));
+    location.assign("../pages/quiz.html");
+    
 }
