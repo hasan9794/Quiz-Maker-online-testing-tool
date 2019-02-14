@@ -8,6 +8,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+let correctQuestions = 0;
 let questionNo = 0;
 
 function productKeyAuthencation() {
@@ -42,7 +43,7 @@ function startQuiz() {
     let validiationArea = document.getElementById("productKeyBoxId");
     validiationArea.style.display = "none";
     let quizArea = document.getElementById("questionArea");
-    
+
     firebase.database().ref(`quizes/${currentQuizNode}/questions`)
         .once('value', function (snapshot) {
             let questionsObj = snapshot.val();
@@ -50,8 +51,8 @@ function startQuiz() {
             let question = Object.keys(questionsObj);
             let questionsLength = question.length;
 
-                quizArea.innerHTML =
-                    `
+            quizArea.innerHTML =
+                `
             <br />
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -64,25 +65,25 @@ function startQuiz() {
                 </div>
                 <div class="panel-footer">
                     <div class="row">
-                        <div class="funkyradio">
+                        <div id="radios" class="funkyradio">
                             <div class="funkyradio-default">
                                 <input value="1" type="radio" name="radio" id="radio1" />
                                 <label for="radio1">${questionsObj[question[questionNo]].firstOption}</label>
                             </div>
                             <div class="funkyradio-primary">
-                                <input type="radio" name="radio" id="radio2" checked />
+                                <input value="2" type="radio" name="radio" id="radio2" checked />
                                 <label for="radio2">${questionsObj[question[questionNo]].secondOption}</label>
                             </div>
                             <div class="funkyradio-success">
-                                <input type="radio" name="radio" id="radio3" />
+                                <input value="3" type="radio" name="radio" id="radio3" />
                                 <label for="radio3">${questionsObj[question[questionNo]].thirdOption}</label>
                             </div>
                             <div class="funkyradio-danger">
-                                <input type="radio" name="radio" id="radio4" />
+                                <input value="4" type="radio" name="radio" id="radio4" />
                                 <label for="radio4">${questionsObj[question[questionNo]].fourthOption}</label>
                             </div>
                             <button style="visibility: hidden;" onClick="printQuiz()" style="margin-top: 10px" type="button" class="btn btn-primary">Submit Quiz</button>
-                            <button onClick="nextQuestion()" style="margin-top: 10px" type="button" class="btn btn-primary">Next Question</button>
+                            <button onClick="checkAnswer()" style="margin-top: 10px" type="button" class="btn btn-primary">Next Question</button>
                         </div>
 
                     </div>
@@ -91,8 +92,32 @@ function startQuiz() {
             </div>
             `
             questionNo++;
-
+            
         })
+}
+
+
+//Check for correct/incorrect answers
+function checkAnswer() {
+    let get = localStorage.getItem("questionsObj");
+    let questionsObj = JSON.parse(get);
+    let question = Object.keys(questionsObj);
+
+    let list = document.getElementById("radios"); //Client ID of the radiolist
+    let inputs = list.getElementsByTagName("input");
+    let selected;
+    for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].checked) {
+            selected = inputs[i];
+            break;
+        }
+    }
+    if (selected.value === questionsObj[question[questionNo]].answer) {
+        correctQuestions++;
+    }
+
+    nextQuestion()
+
 }
 
 function nextQuestion() {
@@ -101,16 +126,17 @@ function nextQuestion() {
     // let questionsObj = JSON.parse(e);
     let question = Object.keys(questionsObj);
     console.log(question);
-    let totalNumberOfQuestions = question.length;
+    totalNumberOfQuestions = question.length;
     let quizArea = document.getElementById("questionArea");
-    
-    if(questionNo === totalNumberOfQuestions) {
+
+    if (questionNo === totalNumberOfQuestions) {
         console.log("quiz finished")
+        getResult();
         return false;
     }
 
-    quizArea.innerHTML = 
-    `   
+    quizArea.innerHTML =
+        `   
     <br />
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -123,25 +149,25 @@ function nextQuestion() {
                 </div>
                 <div class="panel-footer">
                     <div class="row">
-                        <div class="funkyradio">
+                        <div id="radios" class="funkyradio">
                             <div class="funkyradio-default">
                                 <input value="1" type="radio" name="radio" id="radio1" />
                                 <label for="radio1">${questionsObj[question[questionNo]].firstOption}</label>
                             </div>
                             <div class="funkyradio-primary">
-                                <input type="radio" name="radio" id="radio2" checked />
+                                <input value="2" type="radio" name="radio" id="radio2" checked />
                                 <label for="radio2">${questionsObj[question[questionNo]].secondOption}</label>
                             </div>
                             <div class="funkyradio-success">
-                                <input type="radio" name="radio" id="radio3" />
+                                <input value="3" type="radio" name="radio" id="radio3" />
                                 <label for="radio3">${questionsObj[question[questionNo]].thirdOption}</label>
                             </div>
                             <div class="funkyradio-danger">
-                                <input type="radio" name="radio" id="radio4" />
+                                <input value="4" type="radio" name="radio" id="radio4" />
                                 <label for="radio4">${questionsObj[question[questionNo]].fourthOption}</label>
                             </div>
                             <button style="visibility: hidden;" onClick="printQuiz()" style="margin-top: 10px" type="button" class="btn btn-primary">Submit Quiz</button>
-                            <button onClick="nextQuestion()" style="margin-top: 10px" type="button" class="btn btn-primary">Next Question</button>
+                            <button onClick="checkAnswer()" style="margin-top: 10px" type="button" class="btn btn-primary">Next Question</button>
                         </div>
 
                     </div>
@@ -151,3 +177,7 @@ function nextQuestion() {
     questionNo++;
 }
 
+function getResult() {
+    let percentage = (correctQuestions/totalNumberOfQuestions) *100;
+    console.log(percentage);
+}
