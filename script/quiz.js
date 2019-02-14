@@ -91,7 +91,7 @@ function startQuiz() {
                 </div>
             </div>
             `
-            questionNo++;
+            
             
         })
 }
@@ -121,6 +121,7 @@ function checkAnswer() {
 }
 
 function nextQuestion() {
+    questionNo++;
     let get = localStorage.getItem("questionsObj");
     let questionsObj = JSON.parse(get);
     // let questionsObj = JSON.parse(e);
@@ -174,7 +175,6 @@ function nextQuestion() {
                 </div>
             </div>
     `
-    questionNo++;
 }
 
 function getResult() {
