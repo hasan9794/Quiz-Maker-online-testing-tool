@@ -13,12 +13,13 @@
 
 <body>
     <div id="productKeyBoxId" class="productKeyBox">
-        <div class="panel panel-primary class">
+        <div id="loader" style="visibility: hidden;" class="loader"></div>
+        <div id="keyBox" class="panel panel-primary class">
             <div class="panel-heading">Plese Enter Product Key</div>
             <div class="panel-body">
                 <div class="form-group">
                     <label for="Key">Product Key</label>
-                    <input style="width: 500px;" type="text" class="form-control" id="productKey">
+                    <input style="width: 500px;" type="password" class="form-control" id="productKey">
                     <button onClick="productKeyAuthencation()" style="margin-top: 20px;" class=" btn btn-primary btn-block">Submit</button>
                 </div>
 

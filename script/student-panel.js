@@ -19,7 +19,7 @@ function getQuizes() {
           let quizObj = snapshot.val(); 
           let quizKeys = Object.keys(quizObj);
           quizKeys.map(key =>{
-              quizArea.innerHTML =
+              quizArea.innerHTML +=
               `
               <div id="main" class="col-md-4 col-sm-12">
               <div class="card" style="width: 18rem;">
