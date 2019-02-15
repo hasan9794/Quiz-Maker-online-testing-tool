@@ -11,7 +11,7 @@ var config = {
  let id = 2;
 function createQuiz() {
     let previousData = document.getElementById('user');
-    // previousData.innerHTML = '';
+    previousData.innerHTML = '';
     previousData.innerHTML = 
     `
     <div class="row">
@@ -46,9 +46,8 @@ function createQuiz() {
 }  
 
 function questions() {
-    // let loader = document.getElementById("loader");
-    // loader.style.visibility = "";
     let previousData = document.getElementById('user');
+    // previousData.innerHTML = '';
     let quizTitle = document.getElementById('title').value;
     let quizName = document.getElementById('name').value;
     let productKey = document.getElementById('productKey').value;
@@ -69,7 +68,7 @@ function questions() {
             console.log(success.key);
             localStorage.setItem("quizKey", JSON.stringify(success.key));
             previousData.innerHTML = 
-            `   
+            ` 
                     <div class="row">
                         <div id="col" class="col-md-10 col-sm-10 col-xs-12 gutter">
                             <div class="form">
@@ -102,33 +101,34 @@ function questions() {
                                     <option value="3">Third Option</option>
                                     <option value="4">Fourth Option</option>
                                 </select>
-                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                             <div class="col-md-10 col-sm-10 col-xs-12 gutter">
                                 <div class="addQuestion">
-                                    <button href="javascript:void(0)" onClick="addQuestion()" id="newQuestion" class="btn btn-primary">Add Question</button>
-                                    <button onClick="submitData()" class="btn btn-success">Submit</button>
+                                    <button type="submit" onClick="addQuestion()" id="newQuestion" class="btn btn-primary">Add Question</button>
+                                    <button type="submit" onClick="submitData()" class="btn btn-success">Submit</button>
                                 </div>
                             </div>    
                     </div>
             `
+
         })
         .catch((err)=>{
             alert(err.message);
         })
-        // loader.style.visibility = "hidden";
 }
 
 function addQuestion() {
-    let previousData = document.getElementById('user');
-    previousData.innerHTML += 
-
-        `       <div class="row">
+    let previousData = document.getElementById('main');
+    let div = document.createElement('div');
+    previousData.appendChild(div);
+    div.innerHTML += 
+   `             <div class="row">
                     <div id="col" class="col-md-10 col-sm-10 col-xs-12 gutter">
-                       <div class="form">
+                     <div class="form">
                             <h3>Question #${id}</h3>
                             <div class="form-group">
                                 <label for="question">Question</label>
@@ -161,9 +161,9 @@ function addQuestion() {
                             </div>
                         </div>
                     </div>
-                </div>
-                    
+                </div>   
             `
+            previousData.appendChild(div)
             id++;
 }
 
