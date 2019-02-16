@@ -40,5 +40,18 @@ function getQuizes() {
 function startQuiz(e) {
     localStorage.setItem("clikedQuizKey", JSON.stringify(e));
     location.assign("../pages/quiz.html");
-    
 }
+
+
+function logout() {
+    firebase.auth().signOut()
+    .then(() => {
+        localStorage.setItem("userAuth", JSON.stringify({
+            user: "null"
+        }));
+        location.assign("../pages/student-login.html");
+        //signout Succesful
+    }).catch((error) => {
+        alert(error)
+    })
+ }
