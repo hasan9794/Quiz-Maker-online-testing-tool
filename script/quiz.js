@@ -16,7 +16,7 @@ function productKeyAuthencation() {
     validiationArea.style.display = "none";
     let loader = document.getElementById("loader");
     loader.style.visibility = "visible";
-    let get = localStorage.getItem("quizKey");
+    let get = localStorage.getItem("clikedQuizKey");
     let currentQuizNode = JSON.parse(get);
     console.log(currentQuizNode);
 
@@ -38,7 +38,7 @@ function productKeyAuthencation() {
 }
 
 function startQuiz() {
-    let get = localStorage.getItem("quizKey");
+    let get = localStorage.getItem("clikedQuizKey");
     let currentQuizNode = JSON.parse(get);
     let validiationArea = document.getElementById("productKeyBoxId");
     validiationArea.style.display = "none";
@@ -131,6 +131,10 @@ function nextQuestion() {
     let quizArea = document.getElementById("questionArea");
 
     if (questionNo === totalNumberOfQuestions) {
+        let nextBtn = document.getElementById('nextQuestion')
+        nextBtn.style.visibility = "hidden";
+        let submit = document.getElementById('submitQuiz')
+        submit.style.visibility = "";
         console.log("quiz finished")
         getResult();
         return false;
@@ -167,8 +171,8 @@ function nextQuestion() {
                                 <input value="4" type="radio" name="radio" id="radio4" />
                                 <label for="radio4">${questionsObj[question[questionNo]].fourthOption}</label>
                             </div>
-                            <button style="visibility: hidden;" onClick="printQuiz()" style="margin-top: 10px" type="button" class="btn btn-primary">Submit Quiz</button>
-                            <button onClick="checkAnswer()" style="margin-top: 10px" type="button" class="btn btn-primary">Next Question</button>
+                            <button id="submitQuiz" style="visibility: hidden;" onClick="getResult()" style="margin-top: 10px" type="button" class="btn btn-success">Submit Quiz</button>
+                            <button id="nextQuestion" onClick="checkAnswer()" style="margin-top: 10px" type="button" class="btn btn-primary">Next Question</button>
                         </div>
 
                     </div>
@@ -179,5 +183,22 @@ function nextQuestion() {
 
 function getResult() {
     let percentage = (correctQuestions/totalNumberOfQuestions) *100;
+    percentage = percentage.toFixed(2)
+    let marksObj = {
+        correct: correctQuestions,
+        total : totalNumberOfQuestions,
+        percentage : percentage
+    }
+    let get = localStorage.getItem("clikedQuizKey");
+    let currentQuizNode = JSON.parse(get);
+    let userUid = firebase.auth().currentUser.uid;
+    firebase.database().ref(`results/${currentQuizNode}/${userUid}`)
+        .set(marksObj)
+
+    // localStorage.setItem("correctQuestions", JSON.stringify(correctQuestions))
+    // localStorage.setItem("totalNumberOfQuestions", JSON.stringify(totalNumberOfQuestions))
+    // localStorage.setItem("questionsObj", JSON.stringify(questionsObj))
     console.log(percentage);
+    location.assign('../pages/result.html')
+
 }

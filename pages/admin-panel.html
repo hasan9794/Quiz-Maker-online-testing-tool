@@ -18,7 +18,7 @@
         <div class="row display-table-row">
             <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
                 <div class="logo">
-                    <a hef="home.html"><img src="http://jskrishna.com/work/merkury/images/logo.png" alt="merkery_logo"
+                    <a hef="home.html"><img src="../images/42792829_2481494735224033_889299822182400000_n.jpg" alt="merkery_logo"
                             class="hidden-xs hidden-sm">
                         <img src="http://jskrishna.com/work/merkury/images/circle-logo.png" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
                     </a>
@@ -26,11 +26,11 @@
                 <div class="navi">
                     <ul>
                         <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                        <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Workflow</span></a></li>
+                        <!-- <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Workflow</span></a></li> -->
                         <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
-                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Calender</span></a></li>
+                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">About</span></a></li>
                         <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Users</span></a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
+                        <li><a onClick="logout()" href="javascript:void(0)"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Logout</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -57,16 +57,16 @@
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
-                                    <li onClick="createQuiz()" class="hidden-xs"><a href="#" class="add-project"
-                                            data-toggle="modal" data-target="#add_project">Create a quiz</a></li>
-                                    <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-                                    <li>
+                                    <li onClick="createQuiz()" class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">Create a Quiz  </a></li>
+                                    <li onClick="createQuiz()" class="hidden-xs"><a onClick="logout()" id="logout" href="#" class="add-project" >Logout  </a></li>
+                                    <!-- <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> -->
+                                    <!-- <li>
                                         <a href="#" class="icon-info">
                                             <i class="fa fa-bell" aria-hidden="true"></i>
                                             <span class="label label-primary">3</span>
                                         </a>
-                                    </li>
-                                    <li class="dropdown">
+                                    </li> -->
+                                    <!-- <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://jskrishna.com/work/merkury/images/user-pic.jpg"
                                                 alt="user">
                                             <b class="caret"></b></a>
@@ -83,7 +83,7 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>
@@ -91,8 +91,11 @@
                 </div>
                 
                 <div id="main" class="user-dashboard">
-                    <h1>Hello, JS</h1>
-                    <div id="user"></div>
+                    <h1>Hello, Admin</h1>
+                    <div id="user">
+                        <h3>All Quiz</h3>
+                        <div id="displayQuiz"></div>
+                    </div>
                     
                 </div>
             </div>

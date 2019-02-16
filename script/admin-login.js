@@ -13,6 +13,11 @@ adminLogin.addEventListener('click', () => {
 let email = document.getElementById('email').value;
 let password = document.getElementById('password').value;
 
+if(email !== "admin@gmail.com"){
+  alert("You are not admin")
+  return false;
+}
+
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((success) => {
       localStorage.setItem("userAuth", JSON.stringify(success));

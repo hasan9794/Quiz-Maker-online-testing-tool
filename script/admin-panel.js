@@ -9,6 +9,47 @@ var config = {
   firebase.initializeApp(config);
   
  let id = 2;
+
+ window.addEventListener('load', () =>{
+    showQuizes()
+ })
+
+ function showQuizes() {
+     let quizArea = document.getElementById("displayQuiz");
+    firebase.database().ref('quizes/')
+    .once('value', (snapshot) =>{
+        let quizObj = snapshot.val(); 
+        let quizKeys = Object.keys(quizObj);
+        quizKeys.map(key =>{
+            quizArea.innerHTML +=
+            `
+            <div class="card">
+                <div class="container">
+                <h4><b>${quizObj[key].details.quizTitle}</b></h4> 
+                <p>${quizObj[key].details.quizName}</p> 
+                </div>
+            </div>
+            
+          `
+        })
+    })
+ }
+
+
+ function logout() {
+    firebase.auth().signOut()
+    .then(() => {
+        localStorage.setItem("userAuth", JSON.stringify({
+            user: "null"
+        }));
+        location.assign("../pages/admin-login.html");
+        //signout Succesful
+    }).catch((error) => {
+        alert(error)
+    })
+ }
+
+
 function createQuiz() {
     let previousData = document.getElementById('user');
     previousData.innerHTML = '';
@@ -53,6 +94,11 @@ function questions() {
     let productKey = document.getElementById('productKey').value;
     let duration = document.getElementById('duration').value;
     
+    if(!quizTitle || !quizName || !productKey || !duration){
+        alert("One of the field is missing")
+        return false;
+    }
+
     let quizDetails = {
         details: {
             quizTitle,

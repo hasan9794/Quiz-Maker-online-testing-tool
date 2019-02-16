@@ -17,6 +17,11 @@ var config = {
       
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then( (success)=>{
+        let userObj = {
+          name,
+          email,
+          studentId
+        }
         let uid = firebase.auth().currentUser.uid;
         console.log(uid)
         firebase.database().ref('users/' + uid).set(userObj);
